@@ -1,0 +1,15 @@
+{
+  "name": "join-file-content-plugin",
+  "version": "1.0.0",
+  "description": "Prepend or append file to a target file while webpack running",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "author": "hz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hzsrc/join-file-content-plugin/issues"
+  },
+  "homepage": "https://github.com/hzsrc/join-file-content-plugin#readme"
+}

@@ -1,5 +1,6 @@
 'use strict';
 var path = require('path'), fs = require('fs')
+var throttleDebounce = require('throttle-debounce')
 
 module.exports = class Handler {
     constructor(options) {
@@ -33,7 +34,7 @@ module.exports = class Handler {
             return content
         })
 
-        console.log('replaced:', file)
+        //console.log('replaced:', file)
         this.watchFile(file, backupFile, prependFile, appendFile)
     }
 
@@ -51,13 +52,14 @@ module.exports = class Handler {
 
         (it.watches || []).map(watch => watch.close())
         it.watches = []
+        var debounceCall = throttleDebounce.debounce(100, onChange)
         //if (this.options.isDev) {
-        if (prependFile) it.watches.push(fs.watch(prependFile, onChange))
-        if (appendFile) it.watches.push(fs.watch(appendFile, onChange))
-
+        if (prependFile) it.watches.push(fs.watch(prependFile, debounceCall))
+        if (appendFile) it.watches.push(fs.watch(appendFile, debounceCall))
         //}
 
         function onChange(type, name) {
+            // console.log(type,name)
             if (fs.existsSync(file)) {
                 it.changeFile(file, backupFile, prependFile, appendFile)
             }

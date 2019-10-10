@@ -1,0 +1,11 @@
+$--color-primary: blue;
+
+$--color-primary: red !default;
+
+.a {
+    color: $--color-primary;
+}
+.b {
+    color: #ddd;
+}
+

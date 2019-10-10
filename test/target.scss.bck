@@ -1,0 +1,5 @@
+$--color-primary: red !default;
+
+.a {
+    color: $--color-primary;
+}

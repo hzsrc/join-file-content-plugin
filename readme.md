@@ -3,7 +3,7 @@ A webpack plugin, auto prepend or append file to a target file while webpack sta
 When the prepending or appending file changed, do this again.
 
 #### sapmle
-For element-ui, we need to prepend some customized variables before the element variable [scss] file `node_modules/element-theme-chalk/src/common/var.scss` (sass-loader can do this but does't support file).    
+For `element-ui`, we need to prepend some customized variables before the `element-ui` variable [scss] file `node_modules/element-theme-chalk/src/common/var.scss` (`sass-loader` can do this but does't support file).    
 
 We can set the customized variables in a file `theme-changed.scss`, and use this plugin to prepend this file to the `var.scss` of element-ui.    
 
@@ -29,3 +29,5 @@ module.exports = {
 ````
 
 After we change the variables in `theme-changed.scss`, webpack will hot-reload it for preview.
+
+[Here](https://github.com/hzsrc/vue-element-ui-scaffold-webpack4) is the whole project for this sample.

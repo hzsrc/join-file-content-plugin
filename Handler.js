@@ -58,7 +58,6 @@ module.exports = class Handler {
         //if (this.options.isDev) {
         if (prependFile) it.watches.push(fs.watch(prependFile, debounceCall))
         if (appendFile) it.watches.push(fs.watch(appendFile, debounceCall))
-
         //}
 
         function onChange(type, name) {

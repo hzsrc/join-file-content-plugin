@@ -13,9 +13,11 @@ module.exports = class Handler {
 
     handle(compiler) {
         var cwd = this.options.cwd
-        var file = path.resolve('.', this.options.file)
-        var appendFile = path.resolve('.', this.options.appendFile)
-        var prependFile = path.resolve('.', this.options.prependFile)
+        var file = path.resolve(cwd, this.options.file)
+        var appendFile = this.options.appendFile
+        var prependFile = this.options.prependFile
+        if (appendFile) appendFile = path.resolve(cwd, this.options.appendFile)
+        if (prependFile) prependFile = path.resolve(cwd, this.options.prependFile)
 
         var backupFile = this.doBackupFile(file)
         this.changeFile(file, backupFile, prependFile, appendFile)
@@ -56,6 +58,7 @@ module.exports = class Handler {
         //if (this.options.isDev) {
         if (prependFile) it.watches.push(fs.watch(prependFile, debounceCall))
         if (appendFile) it.watches.push(fs.watch(appendFile, debounceCall))
+
         //}
 
         function onChange(type, name) {

@@ -8,6 +8,7 @@ module.exports = class Handler {
         this.options = Object.assign({
             encoding: 'utf-8',
             cwd: '.',
+            needWatch: process.env.NODE_ENV === 'development'
         }, options);
     }
 
@@ -50,15 +51,15 @@ module.exports = class Handler {
     }
 
     watchFile(file, backupFile, prependFile, appendFile) {
-        var it = this;
+        if (this.options.needWatch) {
+            var it = this;
 
-        (it.watches || []).map(watch => watch.close())
-        it.watches = []
-        var debounceCall = throttleDebounce.debounce(100, onChange)
-        //if (this.options.isDev) {
-        if (prependFile) it.watches.push(fs.watch(prependFile, debounceCall))
-        if (appendFile) it.watches.push(fs.watch(appendFile, debounceCall))
-        //}
+            (it.watches || []).map(watch => watch.close())
+            it.watches = []
+            var debounceCall = throttleDebounce.debounce(100, onChange)
+            if (prependFile) it.watches.push(fs.watch(prependFile, debounceCall))
+            if (appendFile) it.watches.push(fs.watch(appendFile, debounceCall))
+        }
 
         function onChange(type, name) {
             // console.log(type,name)

@@ -23,6 +23,7 @@ module.exports = {
             // appendFile: '', // file for appending to the target file. optional.
             // cwd: '.', // relative to this path. optional.
             // encoding: 'utf-8', // text encoding. optional.
+            // watch: process.env.NODE_ENV === 'development', // watch file changing. optional
         }),
     ]
 }

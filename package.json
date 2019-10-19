@@ -1,6 +1,6 @@
 {
     "name": "join-file-content-plugin",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "description": "Prepend or append file to a target file while webpack running",
     "main": "index.js",
     "scripts": {
